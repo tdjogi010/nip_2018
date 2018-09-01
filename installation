@@ -1,0 +1,15 @@
+conda create -n opensim-rl -c kidzik opensim python=3.6.1
+source activate opensim-rl
+
+conda install -c conda-forge lapack git
+pip install git+https://github.com/stanfordnmbl/osim-rl.git
+
+pip install -U tensorflow
+
+
+
+python train.py --alg=ppo2 --num_timesteps=1e4 --save_path="./tmp/my_model" --save_interval=1 --nsteps=128
+python train.py --alg=ppo2 --num_timesteps=1e4 --save_path="./tmp/my_model" --save_interval=1 --nsteps=128 --load_path="./tmp/checkpoints/00001"
+python test.py --alg=ppo2
+
+remember number of envs needs to be same
