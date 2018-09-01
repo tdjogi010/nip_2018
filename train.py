@@ -82,7 +82,7 @@ def my_make_vec_env(env_id, env_type, num_env, seed, wrapper_kwargs=None, start_
     mpi_rank = MPI.COMM_WORLD.Get_rank() if MPI else 0
     def make_env(rank): # pylint: disable=C0111
         def _thunk():
-            env = ProstheticsEnv(visualize=True)
+            env = ProstheticsEnv(visualize=False)
             env.seed(seed + 10000*mpi_rank + rank if seed is not None else None)
             env = ForceDictObservation(env)
             env = DictToListFull(env)
